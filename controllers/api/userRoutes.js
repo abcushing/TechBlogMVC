@@ -72,13 +72,6 @@ router.post('/logout', (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-  // const userData = await User.findAll();
-  // console.log(userData);
-  // if (!userData) return res.status(500).json({ err: 'server failure' });
-  // else {
-  //   res.status(200).json(userData);
-  // }
-
   User.findAll({ include: [{ all: true, nested: true }] })
     .then((userData) => {
       res.status(200).json(userData);
